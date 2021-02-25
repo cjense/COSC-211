@@ -51,8 +51,19 @@ public class QueueOfStacks <E> implements AmhQueue <E> {
      */
     public void add (E element) throws IllegalStateException {
 
-	// TO DO
-	
+        try{
+            AmhStack<E> stack2 = new WrapperStack<E>();
+            while(_stack.size() != 0) { // copy info from first stack to second stack
+                stack2.push(_stack.pop());
+            }
+            _stack.push(element); // add element to first stack now that it is empty
+            while(stack2.size() != 0) { // add preexisting elements back to stack 1
+                _stack.push(stack2.pop());
+            }
+        } catch(IllegalStateException e) {
+                System.out.println("Queue cannot be expanded.");
+            }
+
     } // add ()
     // ==========================================================================
 
@@ -67,7 +78,11 @@ public class QueueOfStacks <E> implements AmhQueue <E> {
      */
     public E remove () throws NoSuchElementException {
 
-	// TO DO
+        if(_stack.size() == 0) {
+            throw new NoSuchElementException("Stack is empty. Cannot remove item.");
+        } else {
+            return _stack.pop();
+        }
 	
     } // remove ()
     // ==========================================================================
@@ -77,7 +92,11 @@ public class QueueOfStacks <E> implements AmhQueue <E> {
     // ==========================================================================
     public E peek () throws NoSuchElementException {
 
-	// TO DO
+        if(_stack.size() == 0) {
+            throw new NoSuchElementException("Stack is empty. Cannot peek.");
+        } else {
+            return _stack.top();
+        }
 
     } // peek ()
     // ==========================================================================
@@ -87,7 +106,7 @@ public class QueueOfStacks <E> implements AmhQueue <E> {
     // ==========================================================================
     public int size () {
 
-	// TO DO
+        return _stack.size(); // return size of stack
 	
     } // size ()
     // ==========================================================================

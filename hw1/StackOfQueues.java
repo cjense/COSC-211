@@ -79,11 +79,13 @@ public class StackOfQueues <E> implements AmhStack <E> {
      */    
     public E pop () throws NoSuchElementException {
 
-        try {
-            return _queue.remove(); // returns element from top of stack
-        } catch (NoSuchElementException e) {
-            System.out.println("Stack is empty.");
+
+        if(_queue.size() == 0) {
+            throw new NoSuchElementException("Stack is empty.");
+        } else {
+            return _queue.remove(); // returns and removes element from top of stack
         }
+
 	
     } // pop ()
     // ==========================================================================
@@ -99,10 +101,10 @@ public class StackOfQueues <E> implements AmhStack <E> {
      */
     public E top () throws NoSuchElementException {
 
-        try {
-            return _queue.peek(); // returns the top element from queue, no removal
-        } catch (NoSuchElementException e) {
-            System.out.println("No such element.");
+        if(_queue.size() == 0) {
+            throw new NoSuchElementException("Stack is empty. Cannot return top.");
+        } else {
+            return _queue.peek(); // returns top element without removing
         }
 
     } // top ()
@@ -118,7 +120,7 @@ public class StackOfQueues <E> implements AmhStack <E> {
      */
     public int size () {
 
-        return _queue.size();
+        return _queue.size(); // return size of queue
 	
     } // size ()
     // ==========================================================================
