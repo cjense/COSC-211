@@ -51,7 +51,19 @@ public class StackOfQueues <E> implements AmhStack <E> {
      */
     public void push (E element) throws IllegalStateException {
 
-	// TO DO
+        try{
+            AmhQueue<E> queue2 = new WrapperQueue<E>();
+            while(_queue.size() != 0) { // copy info from first queue to second queue
+                queue2.add(_queue.remove());
+            }
+            _queue.add(element); // add element to first queue now that it is empty
+            while(queue2.size() != 0) { // add preexisting elements back to queue 1
+                _queue.add(queue2.remove());
+            }
+        } catch(IllegalStateException e) {
+                System.out.println("Stack cannot be expanded.");
+            }
+
 	
     } // push ()
     // ==========================================================================
@@ -67,7 +79,11 @@ public class StackOfQueues <E> implements AmhStack <E> {
      */    
     public E pop () throws NoSuchElementException {
 
-	// TO DO
+        try {
+            return _queue.remove(); // returns element from top of stack
+        } catch (NoSuchElementException e) {
+            System.out.println("Stack is empty.");
+        }
 	
     } // pop ()
     // ==========================================================================
@@ -83,8 +99,12 @@ public class StackOfQueues <E> implements AmhStack <E> {
      */
     public E top () throws NoSuchElementException {
 
-	// TO DO
-	
+        try {
+            return _queue.peek(); // returns the top element from queue, no removal
+        } catch (NoSuchElementException e) {
+            System.out.println("No such element.");
+        }
+
     } // top ()
     // ==========================================================================
 
@@ -98,7 +118,7 @@ public class StackOfQueues <E> implements AmhStack <E> {
      */
     public int size () {
 
-	// TO DO
+        return _queue.size();
 	
     } // size ()
     // ==========================================================================
