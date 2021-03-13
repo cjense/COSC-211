@@ -1,0 +1,100 @@
+   get         0
+  size
+  size
+remove         0
+  size
+remove         0
+remove         0
+   set         0        60
+   set         0        78
+   add         0        17
+   set         0         8
+remove         1
+   get         0
+   get         0
+   add         1        92
+   get         1
+   get         2
+remove         0
+  size
+   set         1        51
+   add         1        41
+   set         1        42
+   set         0        25
+   add         1        37
+   set         0        59
+   add         2        31
+  size
+remove         2
+remove         0
+   add         0        97
+  size
+   set         2        36
+   set         3        55
+   get         2
+   add         2        99
+   add         0        84
+   set         6        91
+   set        -1        91
+   get         5
+remove         3
+remove         4
+   add         5        69
+  size
+   add         2        53
+   add         5        44
+  size
+   set         4        64
+  size
+remove         7
+   set         2        98
+  size
+   set         6        43
+   add         6        24
+  size
+   add         7        18
+   set        10        51
+   get         2
+   add         3        47
+   set         7        16
+   add        -1        44
+  size
+  size
+   set        -1         6
+remove         3
+   get         2
+  size
+   get        -2
+   get         9
+  size
+   add         6        34
+   get         5
+  size
+  size
+  size
+  size
+remove        11
+   set         1        83
+  size
+remove        -1
+   get         1
+remove         5
+   set         1        22
+   add        -2        28
+   set         8         5
+   add        -1        48
+remove         4
+   set         7        82
+   add         5         5
+remove         6
+  size
+   set         0        61
+remove        -1
+  size
+   add         2        19
+  size
+   get         3
+   add         8        25
+  size
+   set         1        22
+   add         5        94
