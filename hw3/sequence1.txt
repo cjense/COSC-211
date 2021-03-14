@@ -1,0 +1,100 @@
+   add         0        48
+  size
+   add         1         5
+   set         1        93
+   get         2
+remove         0
+remove         1
+remove         1
+   set         1         0
+   set         0        13
+   set         1        30
+   set         0        46
+   add         0        30
+   add         2        27
+   get         0
+   set         1        79
+   add         2        37
+   add        -1         7
+   add         5        43
+   set        -1        58
+remove         1
+   add         3        59
+remove         2
+   get         3
+   get         0
+  size
+  size
+   set         0        75
+  size
+   add         0        53
+  size
+   set         4        86
+   add         2        93
+   add         3         3
+   get         0
+   set         2        44
+   set         6        47
+remove         2
+   add         0        23
+  size
+remove         7
+   set         2        40
+   get         0
+   set         3         9
+remove         3
+   get         1
+  size
+   get         0
+remove         1
+remove         4
+remove         1
+remove         0
+   set         1        52
+   get         1
+   set         1         2
+   get         2
+   set         1        72
+   set         0        42
+   get         1
+   set         2        21
+   set         2         3
+   set         2        47
+remove         1
+   add         1        55
+remove         1
+   add         1        42
+remove         1
+remove         1
+   add         1        70
+   add         0        29
+remove         1
+  size
+remove         0
+remove         1
+   get         0
+  size
+   get         0
+  size
+   add         0        74
+   add         0        45
+   get         3
+   set         1        66
+   set         0        79
+  size
+   set         2        74
+  size
+   set         3        88
+  size
+   get         1
+remove         0
+   add         0        93
+   set         1        94
+   add         2        31
+   set         0        75
+remove         5
+   set         3        53
+remove        -1
+  size
+   get         2
+   get         4

@@ -12,6 +12,7 @@ class Link <E> {
     public Link<E> next;
     public Link<E> prev;
     public E       value;
+
 }
 // ==============================================================================
 
@@ -42,7 +43,7 @@ public class AmhLinkedList <E> implements AmhList <E> {
      */
     public AmhLinkedList () {
 
-        Link<E> head = new Link<E>(); // added Link<E>
+        head = new Link<E>();
         Link<E> tail = new Link<E>();
         head.next = tail;
         head.prev = null;
@@ -75,18 +76,18 @@ public class AmhLinkedList <E> implements AmhList <E> {
 	}
 
         Link<E> p = walk(index);
-        Link<E> n = new Link<E>();
+        Link<E> n = new Link<E>(); //added element
         n.next      = p;
         n.prev      = p.prev;
         n.prev.next = n;
         p.prev      = n;
+        n.value = element;
 
         size = size + 1;
         
     } // add ()
     // ==========================================================================
 
-    
 
     // ==========================================================================
     /**
@@ -123,7 +124,7 @@ public class AmhLinkedList <E> implements AmhList <E> {
      */
     public E remove (int index) throws IndexOutOfBoundsException {
 
-	if (index < 0 && size <= index) {
+	if (index < 0 || size <= index) {
 	    throw new IndexOutOfBoundsException(index);
 	}
 
@@ -131,6 +132,7 @@ public class AmhLinkedList <E> implements AmhList <E> {
         E       value = p.value;
         p.prev.next = p.next;
         p.next.prev = p.prev;
+
 
         size = size - 1;
         
@@ -152,7 +154,7 @@ public class AmhLinkedList <E> implements AmhList <E> {
      */
     public E set (int index, E element) throws IndexOutOfBoundsException {
 
-	if (index < 0 && size <= index) {
+	if (index < 0 || size <= index) {
 	    throw new IndexOutOfBoundsException(index);
 	}
 
@@ -186,7 +188,7 @@ public class AmhLinkedList <E> implements AmhList <E> {
     private Link<E> walk (int index) {
 
         Link<E> current = head.next;
-        for (int i = 1; i < index; i = i + 1) {
+        for (int i = 0; i < index; i = i + 1) {
             current = current.next;
         }
 

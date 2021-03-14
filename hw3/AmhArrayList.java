@@ -1,3 +1,4 @@
+import java.util.Arrays;
 public class AmhArrayList <E> implements AmhList <E> {
 
     private Object[] _storage;
@@ -40,7 +41,7 @@ public class AmhArrayList <E> implements AmhList <E> {
 	}
 	_size -= 1;
 	E element = (E)_storage[index];
-	for (int i = index; i < _size; i -= 1) {
+	for (int i = index; i < _size; i += 1) {
             _storage[i] = _storage[i+1];
 	}
 	return element;
@@ -60,11 +61,18 @@ public class AmhArrayList <E> implements AmhList <E> {
     } // size ()
 
     private void expandCapacity () {
-	Object[] newStorage = new Object[_storage.length * 2];
-	for (int i = 0; i < _storage.length; i += 1) {
-	    newStorage[i] = _storage[i];
+	if(_storage.length == 0) {
+		Object[] newStorage = new Object[1];
+		_storage = newStorage;
+	} else {
+		Object[] newStorage = new Object[_storage.length * 2];
+		for (int i = 0; i < _storage.length; i += 1) {
+			newStorage[i] = _storage[i];
+		}
+		_storage = newStorage;
 	}
-	_storage = newStorage;
+	
+	
     } // expandCapacity ()
 
 } // AmhArrayList
