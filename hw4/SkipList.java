@@ -111,10 +111,22 @@ public class SkipList<E extends Comparable<E>> implements AmhSortedSet<E> {
         // level on the bottom of the stack
         // YOU FILL IN THIS PART
 
+        Node<E> curNode = head.nextNodes[-1];
+        Stack<Node<E>> preds;
+
+        for(int i = 0; i < this.size(); i++) {
+            if((curNode.nextNodes[i].data).equals(x)) {
+                preds.push(curNode);
+            }
+            curNode = curNode.nextNodes[-1];
+        }
+
+        
 
 
 
-        return null; // placeholder, CHANGE THIS to return the correct thing
+
+        return preds; // return list of predecessors
     }
 
     public void print() {
