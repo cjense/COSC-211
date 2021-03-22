@@ -37,18 +37,14 @@ public class SkipList<E extends Comparable<E>> implements AmhSortedSet<E> {
             height = newHeight;
         }
 
-        // add x after its predecessor on each level within x's height
-        // YOU FILL IN THIS PART
-        for(int i = 0; i < this.size(); i++) {
-            if((pred0.nextNodes[i].data).compareTo(x) == -1 && (pred0.nextNodes[-1]).data.compareTo(x) == 1) { // if 
-                pred0.nextNodes[-1].data = x;
-            }
-            if((pred0.nextNodes[i].data).compareTo(x) == -1) {
-                
+        for(int i = 0; i <= newHeight; i++) {
+            if(preds.size() > 0) {
+                newNode.nextNodes[i] = (preds.peek()).nextNodes[i];
+                (preds.pop()).nextNodes[i] = newNode;
+            } else {
+                head.nextNodes[i] = newNode;
             }
         }
-
-
 
         // now we have one more element stored
         numElts++;
@@ -65,32 +61,17 @@ public class SkipList<E extends Comparable<E>> implements AmhSortedSet<E> {
         if(pred0.nextNodes[0] != null && !pred0.nextNodes[0].data.equals(x)) return null; // non-empty list, elt x wasn't present
 
         // if the elment was present, now we need to remove it from each level on which it appears
-        // YOU FILL IN THIS PART
+        Node<E> ourNode = pred0.nextNodes[0];
 
-        // if(pred0.nextNodes[0] != null) {
-        //     for(int i = 0; i < preds.size(); i++) {
-        //         for(int j = 0; j < preds
-        //     }
-        // }
-
-        Stack<Node<E>> preds2;
-        for(int i =0; i < preds.size(); i++) {
-            if(preds.peek().equals(x)) {
-                preds.pop();
-            } else {
-                preds2.push(preds.pop());
+        for(int i =0; i <= ourNode.getHeight(); i++) {
+            Node<E> temp = preds.pop();
+            temp.nextNodes[i] = ourNode.nextNodes[i];
             }
-        }
-
-        for(int i =0; i < preds2.size(); i++) {
-            preds.push(preds2.pop());
-        }
-
 
 
         // now we have one fewer element stored
         numElts--;
-        return x; // placeholder, CHANGE THIS to return the correct thing
+        return x; // return node just removed
     }
 
     public E find(E x) {
@@ -109,21 +90,17 @@ public class SkipList<E extends Comparable<E>> implements AmhSortedSet<E> {
         // this method should return a stack containing the predecessor nodes of element x on each level,
         // with the predecessor on level 0 at the top of the stack and the predecessor at the highest
         // level on the bottom of the stack
-        // YOU FILL IN THIS PART
+        Stack<Node<E>> preds = new Stack<Node<E>>();
+        Node<E> curNode = head;
+        countOps = 0;
 
-        Node<E> curNode = head.nextNodes[-1];
-        Stack<Node<E>> preds;
-
-        for(int i = 0; i < this.size(); i++) {
-            if((curNode.nextNodes[i].data).equals(x)) {
-                preds.push(curNode);
+        for(int i = height; i >= 0; i--) {
+            while(curNode.nextNodes[i] != null && (curNode.nextNodes[i].data).compareTo(x) < 0) {
+                curNode = curNode.nextNodes[i];
             }
-            curNode = curNode.nextNodes[-1];
+            preds.push(curNode);
+            countOps++;
         }
-
-        
-
-
 
 
         return preds; // return list of predecessors

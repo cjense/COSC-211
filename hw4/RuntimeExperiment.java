@@ -26,7 +26,7 @@ public class RuntimeExperiment {
 
 
     public static void main(String[] args) {
-        double p = 0.5;
+        double p = 0.01;
         if(args.length > 0) {
             try{
                 p = Double.parseDouble(args[0]);
