@@ -2,26 +2,28 @@
 // IMPORTS
 
 import java.lang.IllegalStateException;
+import java.util.Map;
 import java.util.LinkedList;
+
 // ==============================================================================
 
 
 
 // ==============================================================================
 /**
- * Implement a simplified list using a standard <code>LinkedList</code>.
+ * Implement a dictionary using a standard <code>Binary Search Tree</code>.
  *
- * @author Scott Kaplan -- sfkaplan@amherst.edu
+ * @author Claire Jensen
  * @date   Mar 2021
  */
-public class TreeMapWrapper <E> implements Map <K, V> {
+public class TreeMapWrapper <K, V> implements Map <K, V> {
 // ==============================================================================
 
 
     
     // ==========================================================================
     /** The linked list in which the elements will be stored. */
-    private LinkedList<E> _storage;
+    private LinkedList<Node<K, V>> _storage;
     // ==========================================================================
 
 

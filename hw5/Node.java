@@ -1,18 +1,31 @@
 import java.lang.reflect.Array;
 
-public class Node<E> {
+public class Node<K, V> {
 
-    protected E data;
-    protected Node<E>[] nextNodes;
+    private Node<K, V> rightNode;
+    private Node<K, V> leftNode;
 
+    private K key;
+    private V value;
 
-    public int getHeight() {
-        return nextNodes.length - 1;
+    public Node(K key, V value){
+        value = null;
     }
 
-    public Node(E elt, int height){
-        data = elt;
-        nextNodes = (Node<E>[]) Array.newInstance(Node.class, height+1);
+    public K getKey() {
+        return this.key;
+    }
+
+    public V getValue() {
+        return this.value;
+    }
+
+    public Node<K, V> getRight() {
+        return this.rightNode;
+    }
+
+    public Node<K, V> getLeft() {
+        return this.leftNode;
     }
 
 }
