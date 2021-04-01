@@ -4,17 +4,26 @@ public class Node<K, V> {
 
     private Node<K, V> rightNode;
     private Node<K, V> leftNode;
+    private Node<K, V> parentNode;
 
     private K key;
     private V value;
 
-    public Node(K key){
-        this.key = key;
-    }
-
     public Node(K key, V value){
         this.key = key;
-        value = null;
+        this.value = value;
+    }
+
+    public Node<K, V> getParent() {
+        return this.parentNode;
+    }
+
+    public void setParent(Node<K, V> parentNode) {
+        this.parentNode = parentNode;
+    }
+
+    public void setValue(V value) {
+        this.value = value;
     }
 
     public K getKey() {
@@ -31,6 +40,14 @@ public class Node<K, V> {
 
     public Node<K, V> getLeft() {
         return this.leftNode;
+    }
+
+    public void setLeft(Node<K, V> newNode) {
+        this.leftNode = newNode;
+    }
+
+    public void setRight(Node<K, V> newNode) {
+        this.rightNode = newNode;
     }
 
 }
