@@ -3,6 +3,7 @@ import java.util.*;
 public class BinarySearchTree<K extends Comparable<K>, V> {
 
     Stack<Node<K, V>> traversal = new Stack<Node<K, V>>();
+    Node<K, V> root;
 
     public V add(K key, V value) {
         if(value == this.lookup(key)) {
@@ -11,11 +12,21 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
     }
 
     public V remove(K key) {
-        if(this.lookup(key) == null) {
-            return null;
-        } else {
+        private Node<K> curNode = this.lookup(key);
 
-        }
+        // if node isn't in the tree
+        if(curNode == null) {
+            return null;
+        // if node that is being looked up has no children
+        } else if(curNode.getLeft() == null && curNode.getRight() == null) {
+
+        // if node only has right child
+        } else if(curNode.getLeft() == null && curNode.getRight !=null) {
+
+        // if node only has left child
+        } else if(curNode.getLeft() != null && curNode.getRight == null) {
+
+            }
 
     }
 
@@ -26,7 +37,7 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
     }
 
     public void inOrderTraverse() {
-s
+
     }
 
 }

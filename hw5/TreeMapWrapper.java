@@ -4,6 +4,7 @@
 import java.lang.IllegalStateException;
 import java.util.Map;
 import java.util.LinkedList;
+import java.util.Set;
 
 // ==============================================================================
 
@@ -16,7 +17,7 @@ import java.util.LinkedList;
  * @author Claire Jensen
  * @date   Mar 2021
  */
-public class TreeMapWrapper <K, V> implements Map <K, V> {
+public class TreeMapWrapper <K, V> implements Map<K, V> {
 // ==============================================================================
 
 
@@ -30,13 +31,13 @@ public class TreeMapWrapper <K, V> implements Map <K, V> {
     
     // ==========================================================================
     /**
-     * Constructor.  Create an empty list.
+     * Constructor.  Create an empty dictionary.
      */
-    public WrapperList () {
+    public TreeMapWrapper () {
 
-	_storage = new LinkedList<E>();
+	_storage = new BinarySearchTree<K, V>();
 
-    } // WrapperList ()
+    } // TreeMapWrapper ()
     // ==========================================================================
 
 
@@ -53,7 +54,7 @@ public class TreeMapWrapper <K, V> implements Map <K, V> {
      * @throws IllegalStateException  if the list cannot be expanded to
      *                                accomodate the additional element.
      */
-    public void add (int index, E element) throws IndexOutOfBoundsException,
+    public void add (K key, V value) throws IndexOutOfBoundsException,
 						  IllegalStateException {
 
         _storage.add(index, element);
@@ -115,7 +116,13 @@ public class TreeMapWrapper <K, V> implements Map <K, V> {
     } // set ()
     // ==========================================================================
 
-    
+    public boolean containsKey(K key) {
+        return _storage.contains(key);
+    }
+
+    public Set<K> keySet() {
+
+    }
 
     // ==========================================================================
     /**

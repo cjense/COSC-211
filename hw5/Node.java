@@ -8,7 +8,12 @@ public class Node<K, V> {
     private K key;
     private V value;
 
+    public Node(K key){
+        this.key = key;
+    }
+
     public Node(K key, V value){
+        this.key = key;
         value = null;
     }
 
