@@ -1,53 +1,68 @@
-import java.lang.reflect.Array;
-
+package hw5;
 public class Node<K, V> {
-
-    private Node<K, V> rightNode;
-    private Node<K, V> leftNode;
-    private Node<K, V> parentNode;
 
     private K key;
     private V value;
 
-    public Node(K key, V value){
+    private Node<K, V> leftNode;
+    private Node<K, V> rightNode;
+    private Node<K, V> parentNode;
+
+
+    public Node(K key) {
+        this.key = key;
+    }
+
+    public Node(K key, V value) {
         this.key = key;
         this.value = value;
     }
 
-    public Node<K, V> getParent() {
-        return this.parentNode;
+    public K getKey() {
+        return key;
     }
 
-    public void setParent(Node<K, V> parentNode) {
-        this.parentNode = parentNode;
+    public V getValue() {
+        return value;
+    }
+
+    public Node<K, V> getLeft() {
+        return leftNode;
+    }
+
+    public Node<K, V> getRight() {
+        return rightNode;
+    }
+
+    public void setKey(K key) {
+        this.key = key;
     }
 
     public void setValue(V value) {
         this.value = value;
     }
 
-    public K getKey() {
-        return this.key;
+    public void setLeft(Node<K, V> leftNode) {
+        this.leftNode = leftNode;
     }
 
-    public V getValue() {
-        return this.value;
+    public void setRight(Node<K, V> rightNode) {
+        this.rightNode = rightNode;
     }
 
-    public Node<K, V> getRight() {
-        return this.rightNode;
+    public boolean isRightNode() {
+        return parentNode.rightNode == this;
     }
 
-    public Node<K, V> getLeft() {
-        return this.leftNode;
+    public boolean isRoot(){
+        return parentNode == null;
     }
 
-    public void setLeft(Node<K, V> newNode) {
-        this.leftNode = newNode;
+    public Node<K, V> getParent() {
+        return parentNode;
     }
 
-    public void setRight(Node<K, V> newNode) {
-        this.rightNode = newNode;
+    public void setParent(Node<K, V> parentNode) {
+        this.parentNode = parentNode;
     }
-
 }
