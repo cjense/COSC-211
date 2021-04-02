@@ -1,4 +1,3 @@
-package hw5;
 public class Node<K, V> {
 
     private K key;

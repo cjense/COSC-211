@@ -1,4 +1,3 @@
-package hw5;
 
 import java.io.File;
 import java.util.Scanner;
@@ -9,7 +8,7 @@ public class WordCount {
 
         try {
             // source file of text document to search
-            File file = new File("C:\\Users\\clair\\OneDrive\\School\\SPRING 2021\\COSC-211\\hw5\\sampletext.txt");
+            File file = new File("sampletext.txt");
 
             Scanner input = new Scanner(file);
             // while there are more words to parse through

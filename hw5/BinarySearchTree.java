@@ -1,4 +1,3 @@
-package hw5;
 
 public class BinarySearchTree<K extends Comparable<K>, V> implements Dictionary<K, V> {
 
