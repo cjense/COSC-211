@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class BinarySearchTree<K extends Comparable<K>, V> {
+public class BinarySearchTree<K extends Comparable<K>, V> implements Dictionary<K, V> {
 
     private ArrayList<Node<K, V>> traversal = new ArrayList<Node<K, V>>();
     private Node<K, V> root;
@@ -40,27 +40,28 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
             } else if(key.compareTo(parentNode.getKey()) < 0) {
                 parentNode.setLeft(newNode);
             }
-            return null;
         }
+        return null;
     }
 
     public V remove(K key) {
-        private Node<K, V> curNode = new Node<this.lookup(key), null>;
+        return null;
+        // private Node<K, V> curNode = new Node<this.lookup(key), null>;
 
-        // if node isn't in the tree
-        if(curNode == null) {
-            return null;
-        // if node that is being looked up has no children
-        } else if(curNode.getLeft() == null && curNode.getRight() == null) {
+        // // if node isn't in the tree
+        // if(curNode == null) {
+        //     return null;
+        // // if node that is being looked up has no children
+        // } else if(curNode.getLeft() == null && curNode.getRight() == null) {
             
-        // if node only has right child
-        } else if(curNode.getLeft() == null && curNode.getRight() !=null) {
-            this.lookup(key);
-            this.add(traversal.get(key) - 1);
-        // if node only has left child
-        } else if(curNode.getLeft() != null && curNode.getRight() == null) {
+        // // if node only has right child
+        // } else if(curNode.getLeft() == null && curNode.getRight() !=null) {
+        //     this.lookup(key);
+        //     this.add(traversal.get(key) - 1);
+        // // if node only has left child
+        // } else if(curNode.getLeft() != null && curNode.getRight() == null) {
 
-            }
+        //     }
 
     }
 
@@ -87,6 +88,22 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
     }
 
     public void inOrderTraverse() {
+        Node<K, V> curNode = root;
+
+        traverse(curNode);
+    }
+
+    public void traverse(Node<K, V> curNode) {
+        if(curNode == null) {
+            return;
+        }
+
+        // print everything to the left
+        traverse(curNode.getLeft());
+        // print current node
+        System.out.println(curNode);
+        // print everything to the right
+        traverse(curNode.getRight());
 
     }
 
