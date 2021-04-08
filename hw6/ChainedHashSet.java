@@ -8,33 +8,30 @@ public class ChainedHashSet<E> implements AmhHashSet<E> {
     private int             collisions;
     
     public ChainedHashSet (int capacity) {
-
+        storage = new LinkedList[capacity];
+        m = capacity;
     } // ChainedHashSet ()
 
     public boolean insert (E key) {
         int position = hash(key);
-        // if key is not present, insert it, increment n, and return true
-        if(lookup(key) == false) {
-            // if key is not present
-            if(insert(key) == false) {
-                // if there is no linkedlist at hash position,
-                // create a new linkedlist and add key to it
-                if(storage[position] != null) {
-                    collisions++;
-                    LinkedList<E> list = new LinkedList<E>();
-                    list.add(key);
-                    storage[position] = list;
-                // otherwise, add key to linkedlist at hash position
-                } else {
-                    storage[position].add(key);
-                }
+        // if key is present, return false
+        if(lookup(key) == true) {
+            return false;
+        // if key is not present, add it to its corresponding hashed linked list
+        } else if (lookup(key) == false) {
+            // if there is no linkedlist at hash position,
+            // create a new linkedlist and add key to it
+            if(storage[position] == null) {
+                LinkedList<E> list = new LinkedList<E>();
+                list.add(key);
+                storage[position] = list;
+            // otherwise, add key to linkedlist at hash position
+            } else {
+                storage[position].add(key);
+                collisions++;
             }
-            insert(key);
             n++;
             return true;
-        // if key is present, return false
-        } else if (lookup(key) == true) {
-            return false;
         }
 
         return false;
@@ -87,9 +84,12 @@ public class ChainedHashSet<E> implements AmhHashSet<E> {
     }
 
     private int hash (E key) {
+        int index = (key.hashCode() % m);
+        if(index < 0) {
+            index *= -1;
+        }
 
-	return key.hashCode();
-	
+        return index;
     }
 
 } // class ChainedHashSet

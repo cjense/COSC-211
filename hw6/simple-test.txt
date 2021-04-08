@@ -1,0 +1,15 @@
+insert 2 true
+lookup 1 false
+remove 2 true
+remove 5 false
+lookup 7 false
+remove 10 false
+lookup 18 false
+lookup 2 false
+lookup 7 false
+remove 1 false
+lookup 14 false
+insert 11 true
+lookup 16 false
+lookup 11 true
+insert 2 true
