@@ -55,22 +55,22 @@ public class RBTester {
 
     }
 
-    private static boolean inOrder(RedBlackTree<Integer> rbt, RBNode<Integer> node) {
-        RBNode<Integer> root = rbt.root;
-        node = root;
+    // private static boolean inOrder(RedBlackTree<Integer> rbt, RBNode<Integer> node) {
+    //     RBNode<Integer> root = rbt.root;
+    //     node = root;
 
-        if (node.red && node.left.red != true && node.right.red != true) {
-            return false;
-        }
+    //     if (node.red && node.left.red != true && node.right.red != true) {
+    //         return false;
+    //     }
 
-        if(node.left != null && node.right != null) {
-            inOrder(rbt, node.left);
-            inOrder(rbt, node.right);
-        }
+    //     if(node.left != null && node.right != null) {
+    //         inOrder(rbt, node.left);
+    //         inOrder(rbt, node.right);
+    //     }
 
-        return true;
+    //     return true;
 
-    }
+    // }
 
     private static boolean rootChecker(RedBlackTree<Integer> rbt) {
         RBNode<Integer> root = rbt.root;
@@ -85,7 +85,7 @@ public class RBTester {
     private static boolean nullLeafChecker(RedBlackTree<Integer> rbt) {
 
 
-        return false;
+        return true;
     }
 
     private static boolean redChildren(RedBlackTree<Integer> rbt) {
@@ -109,25 +109,44 @@ public class RBTester {
 
         }
 
-        if(count == 2) {
-            return true;
-        } else {
-            return false;
+        return false;
+    }
+
+    private static int blackHeight(RBNode<Integer> node) {
+
+        int count = 0;
+
+        if (node == null) {
+            return 0;
         }
 
-        return false;
+        if(node.isNullLeaf() && !node.red) {
+            return 1;
+        } else if(node.isNullLeaf() && node.red) {
+            return 0;
+        }
+
+        int leftHeight = blackHeight(node.left);
+        int rightHeight = blackHeight(node.left);
+
+        if(!node.red) {
+            count++;
+        } else {
+            count+= 0;
+        }
+
+        if(leftHeight == 0 || rightHeight == 0 || leftHeight != rightHeight) {
+            return 0;
+        } else {
+            return count; // plus leftHeight?
+        }
+
     }
-
-    private static boolean blackTraverse(RedBlackTree<Integer> rbt) {
-
-
-        return false;
-    }
-
 
     private static boolean isRBTree (RedBlackTree<Integer> rbt) {
+        RBNode<Integer> root = rbt.root;
 
-        if(rootChecker(rbt) && nullLeafChecker(rbt) && redChildren(rbt) && blackTraverse(rbt)) {
+        if(rootChecker(rbt) && nullLeafChecker(rbt) && redChildren(rbt) && blackHeight(root) > 0) {
             return true;
         } else {
             return false;
