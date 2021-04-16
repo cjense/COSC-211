@@ -59,10 +59,8 @@ public class RBTester {
         RBNode<Integer> root = rbt.root;
 
         if(!root.red) {
-            System.out.println("root is valid");
             return true;
         } else {
-            System.out.println("root is not valid");
             return false;
         }
     }
@@ -70,10 +68,8 @@ public class RBTester {
     private static boolean nullLeafChecker(RBNode<Integer> node) {
         // checks if null leaves are black
         if(node.isNullLeaf() && !node.red) {
-            System.out.println("leaf is black");
             return true;
         } else if(node.isNullLeaf() && node.red) {
-            System.out.println("leaf is red");
             return false;
         }
 
@@ -84,10 +80,8 @@ public class RBTester {
         // checks if red parent has black children
         if(node.red) {
             if(!node.left.red && !node.right.red) {
-                System.out.println("red parent has black children");
                 return true;
             } else {
-                System.out.println("red parent doesn't have black children");
                 return false;
             }
         }
@@ -103,18 +97,15 @@ public class RBTester {
         }
 
         if(!isValidParent(node)) {
-            System.out.println("not valid parent");
             return 0;
         }
 
         if(nullLeafChecker(node)) {
-            System.out.println("valid null leaf");
             return 1;
         }
 
         if(!node.red) {
             count++;
-            System.out.println("increasing count to: " + count);
         }
 
         int leftHeight = blackHeight(node.left) + count;
