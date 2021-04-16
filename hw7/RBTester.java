@@ -55,90 +55,76 @@ public class RBTester {
 
     }
 
-    // private static boolean inOrder(RedBlackTree<Integer> rbt, RBNode<Integer> node) {
-    //     RBNode<Integer> root = rbt.root;
-    //     node = root;
-
-    //     if (node.red && node.left.red != true && node.right.red != true) {
-    //         return false;
-    //     }
-
-    //     if(node.left != null && node.right != null) {
-    //         inOrder(rbt, node.left);
-    //         inOrder(rbt, node.right);
-    //     }
-
-    //     return true;
-
-    // }
-
     private static boolean rootChecker(RedBlackTree<Integer> rbt) {
         RBNode<Integer> root = rbt.root;
 
-        if(root.red != false) {
+        if(!root.red) {
+            System.out.println("root is valid");
             return true;
         } else {
+            System.out.println("root is not valid");
             return false;
         }
     }
 
-    private static boolean nullLeafChecker(RedBlackTree<Integer> rbt) {
-
-
-        return true;
-    }
-
-    private static boolean redChildren(RedBlackTree<Integer> rbt) {
-
-        RBNode<Integer> root = rbt.root;
-        RBNode<Integer> left = root.left;
-        RBNode<Integer> right = root.right;
-
-        // go through left side of tree to check for red nodes' children
-        while(left != null) {
-            if(left.red) {
-                if(left.right.red != true && left.left.red != true) {
-                    left = left.left;
-                } else { return false; }
-            } else {
-                left = left.left;
-            }
-        }
-
-        while(right != null) {
-
+    private static boolean nullLeafChecker(RBNode<Integer> node) {
+        // checks if null leaves are black
+        if(node.isNullLeaf() && !node.red) {
+            System.out.println("leaf is black");
+            return true;
+        } else if(node.isNullLeaf() && node.red) {
+            System.out.println("leaf is red");
+            return false;
         }
 
         return false;
     }
 
-    private static int blackHeight(RBNode<Integer> node) {
+    private static boolean isValidParent(RBNode<Integer> node) {
+        // checks if red parent has black children
+        if(node.red) {
+            if(!node.left.red && !node.right.red) {
+                System.out.println("red parent has black children");
+                return true;
+            } else {
+                System.out.println("red parent doesn't have black children");
+                return false;
+            }
+        }
 
+        return true;
+    }
+
+    private static int blackHeight(RBNode<Integer> node) {
         int count = 0;
 
         if (node == null) {
             return 0;
         }
 
-        if(node.isNullLeaf() && !node.red) {
-            return 1;
-        } else if(node.isNullLeaf() && node.red) {
+        if(!isValidParent(node)) {
+            System.out.println("not valid parent");
             return 0;
         }
 
-        int leftHeight = blackHeight(node.left);
-        int rightHeight = blackHeight(node.left);
+        if(nullLeafChecker(node)) {
+            System.out.println("valid null leaf");
+            return 1;
+        }
 
         if(!node.red) {
             count++;
-        } else {
-            count+= 0;
+            System.out.println("increasing count to: " + count);
         }
 
-        if(leftHeight == 0 || rightHeight == 0 || leftHeight != rightHeight) {
+        int leftHeight = blackHeight(node.left) + count;
+        int rightHeight = blackHeight(node.right) + count;
+
+        // if the left height is equal to the right height, and they are > 0, return count
+        if(leftHeight != rightHeight) {
             return 0;
         } else {
-            return count; // plus leftHeight?
+            return leftHeight;
         }
 
     }
@@ -146,13 +132,10 @@ public class RBTester {
     private static boolean isRBTree (RedBlackTree<Integer> rbt) {
         RBNode<Integer> root = rbt.root;
 
-        if(rootChecker(rbt) && nullLeafChecker(rbt) && redChildren(rbt) && blackHeight(root) > 0) {
-            return true;
-        } else {
+        if(!rootChecker(rbt)) {
             return false;
         }
 
+        return blackHeight(root) > 0;
     }
-
-
 } // class RBTest
