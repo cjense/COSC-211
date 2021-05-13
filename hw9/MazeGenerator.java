@@ -23,7 +23,6 @@ public class MazeGenerator {
 
 		UnionFind uFind = new UnionFind();
 
-
 		// set the entrance and exit to invisible
 		mazeMap[0][0].left.visible = false;
 		mazeMap[mazeMap.length - 1][mazeMap[0].length - 1].right.visible = false;
