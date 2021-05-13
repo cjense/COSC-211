@@ -1,4 +1,5 @@
 import java.lang.Math;
+import java.util.Random;
 
 public class MazeGenerator {
 
@@ -20,6 +21,37 @@ public class MazeGenerator {
     public void createMaze(Wall[] walls, Cell[][] mazeMap) {
 	// FILL IN THIS METHOD
 
+		UnionFind uFind = new UnionFind();
+
+
+		// set the entrance and exit to invisible
+		mazeMap[0][0].left.visible = false;
+		mazeMap[mazeMap.length - 1][mazeMap[0].length - 1].right.visible = false;
+
+		//create union set, add set for each cell
+		for(int i = 0; i < mazeMap.length; i++) {
+			for(int j = 0; j < mazeMap[0].length; j++) {
+				uFind.makeset(mazeMap[i][j]);
+			}
+		}
+
+		int wallsPointer = walls.length;
+		Random random = new Random();
+
+		while(uFind.count > 1) {
+			int randomInt = random.nextInt(wallsPointer);
+			Wall wall = walls[randomInt];
+
+			if(wall.first != null && wall.second != null) {
+				if(uFind.union(wall.first, wall.second)) {
+					wall.visible = false;
+				}
+				wallsPointer--;
+				walls[randomInt] = walls[wallsPointer];
+				walls[wallsPointer] = wall;
+			}
+
+		}
 
     }
 
